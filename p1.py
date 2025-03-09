@@ -1,9 +1,10 @@
-import numpy as np
-# import pickle
 import joblib
 # from joblib import load
 import os
 import re
+
+# stop_words = set(stopwords.words('english'))
+# stemmer = PorterStemmer()
 
 def sanitize_input(user_input):
     # Allow only alphanumeric characters, underscores, and dashes
@@ -29,9 +30,10 @@ class IntentModelLoad():
         self.stemmer = PorterStemmer()
         # --- load label encoder  -
 
-        label_encoder_path = get_safe_path(resources_folder_path, 'NCB_project/resources')  # Use absolute path
-        # if not os.path.exists(label_encoder_path):
-        #     raise FileNotFoundError(f"Label encoder file not found: {label_encoder_path}")
+        label_encoder_path = get_safe_path(resources_folder_path, 'NCB_label_encoder.pkl')  # Use absolute path
+        print(f"Loading label encoder from:{label_encoder_path}")
+        if not os.path.exists(label_encoder_path):
+            raise FileNotFoundError(f"Label encoder file not found: {label_encoder_path}")
         with open(label_encoder_path, 'rb') as pk_file:
             self.model_ncb_le = joblib.load(pk_file)
 
@@ -50,8 +52,8 @@ Traceback (most recent call last):
   File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\api.py", line 6, in <module>
     intent_obj = intent_model.IntentModelLoad()
   File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\intent_model.py", line 43, in __init__
-    with open(label_encoder_path, 'rb') as pk_file:
-FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Bitbucket\\NCB\\nlp_intent_ncb\\NCB_project\\API\\NCB_projectresources\\NCB_projectresources'
+    raise FileNotFoundError(f"Label encoder file not found: {label_encoder_path}")
+FileNotFoundError: Label encoder file not found: D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\NCB_projectresources\NCB_label_encoderpkl
+Loading label encoder from:D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\NCB_projectresources\NCB_label_encoderpkl
 
 Process finished with exit code 1
-
