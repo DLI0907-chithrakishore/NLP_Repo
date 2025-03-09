@@ -118,5 +118,15 @@ Mode                 LastWriteTime         Length Name
 -a----        20-02-2025     19:42            326 NCB_label_encoder.pkl
 
 
+C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\python.exe D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\api.py 
+Traceback (most recent call last):
+  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\api.py", line 6, in <module>
+    intent_obj = intent_model.IntentModelLoad()
+  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\intent_model.py", line 43, in __init__
+    with open('NCB_project/resources/NCB_label_encoder.pkl', 'rb') as pk_file:
+FileNotFoundError: [Errno 2] No such file or directory: 'NCB_project/resources/NCB_label_encoder.pkl'
+
+Process finished with exit code 1
+
 
 
