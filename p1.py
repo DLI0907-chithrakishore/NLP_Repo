@@ -95,3 +95,15 @@ class IntentModelLoad:
         
         self.model_ncb = tf.keras.models.load_model(model_path)
 
+(rnn) PS D:\Bitbucket\NCB\nlp_intent_ncb> ls -l resources/NCB_label_encoder.pkl
+ls : Cannot find path 'D:\Bitbucket\NCB\nlp_intent_ncb\resources\NCB_label_encoder.pkl' because it does not exist.
+At line:1 char:1
++ ls -l resources/NCB_label_encoder.pkl
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (D:\Bitbucket\NC...bel_encoder.pkl:String) [Get-ChildItem], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.GetChildItemCommand
+
+(rnn) PS D:\Bitbucket\NCB\nlp_intent_ncb> 
+
+
+
