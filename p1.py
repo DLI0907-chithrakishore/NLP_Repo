@@ -106,4 +106,17 @@ At line:1 char:1
 (rnn) PS D:\Bitbucket\NCB\nlp_intent_ncb> 
 
 
+(rnn) PS D:\Bitbucket\NCB\nlp_intent_ncb> cd NCB_project
+(rnn) PS D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project> ls -l resources/NCB_label_encoder.pkl
+
+
+    Directory: D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\resources
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        20-02-2025     19:42            326 NCB_label_encoder.pkl
+
+
+
 
