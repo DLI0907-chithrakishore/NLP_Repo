@@ -20,3 +20,13 @@ def get_safe_path(base_dir, user_input):
 
 base_dir = os.getcwd()
 model_folder_path = get_safe_path(base_dir, 'NCB_project/resources')
+
+C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\python.exe D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\api.py 
+Traceback (most recent call last):
+  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\api.py", line 6, in <module>
+    intent_obj = intent_model.IntentModelLoad()
+  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\intent_model.py", line 35, in __init__
+    with open('resources/NCB_label_encoder.pkl', 'rb') as pk_file:
+FileNotFoundError: [Errno 2] No such file or directory: 'resources/NCB_label_encoder.pkl'
+
+
