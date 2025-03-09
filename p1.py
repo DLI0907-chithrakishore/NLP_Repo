@@ -1,59 +1,34 @@
-import joblib
-# from joblib import load
-import os
-import re
+from fastapi import FastAPI,Request
+from fastapi.responses import JSONResponse
+import uvicorn
+import intent_model
+from datetime import datetime
+intent_obj = intent_model.IntentModelLoad()
+now = datetime.now()
+app = FastAPI
 
-# stop_words = set(stopwords.words('english'))
-# stemmer = PorterStemmer()
+@app.get('/healthCheck')
+def home():
+    return f"NCB INTENT Api is running at {now} !!!"
 
-def sanitize_input(user_input):
-    # Allow only alphanumeric characters, underscores, and dashes
-    return ''.join(c for c in user_input if c.isalnum() or c in ('_', '-'))
-
-
-def get_safe_path(base_dir, user_input):
-    sanitized_input = sanitize_input(user_input)
-    safe_path = os.path.join(base_dir, sanitized_input)
-    return os.path.abspath(safe_path)
-
-base_dir = os.getcwd()
-# model_folder_path = get_safe_path(base_dir, 'NCB_project/resources')
-resources_folder_path = get_safe_path(base_dir, 'NCB_project/resources')
-# # Get the base directory of the project (one level up from API/)
-# base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# model_folder_path = get_safe_path(base_dir, 'NCB_project/resources')
+@app.post('/classify_intent_NCB')
+async def classify_intent(request: Request):
+    request_json = await request.json()
+    texts = request_json['input_text']
+    # p_id = request_json['project_id']
+    predicted_intent, status = intent_obj.predict_model(texts)
+    predicted_intent = ''.join(predicted_intent)
+    dict_response = {'Result': predicted_intent}
+    return JSONResponse(content=dict_response, status_code=status)
 
 
-class IntentModelLoad():
-    def __init__(self):
-        self.stop_words = set(stopwords.words('english'))
-        self.stemmer = PorterStemmer()
-        # --- load label encoder  -
+if __name__ == '__main__':
+    uvicorn.run('api:app', host='0.0.0.0', port=8082)
 
-        label_encoder_path = get_safe_path(resources_folder_path, 'NCB_label_encoder.pkl')  # Use absolute path
-        print(f"Loading label encoder from:{label_encoder_path}")
-        if not os.path.exists(label_encoder_path):
-            raise FileNotFoundError(f"Label encoder file not found: {label_encoder_path}")
-        with open(label_encoder_path, 'rb') as pk_file:
-            self.model_ncb_le = joblib.load(pk_file)
-
-
-        # #
-        # with open('NCB_project/resources/NCB_label_encoder.pkl', 'rb') as pk_file:
-        #     self.model_ncb_le = joblib.load(pk_file)
-        # --- load model ---
-        # model_path = os.path.join(model_folder_path, 'NCB_model_epoch50')
-        model_path = os.path.join(resources_folder_path, 'NCB_model_epoch50')
-        self.model_ncb = tf.keras.models.load_model(model_path)
-
-
-C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\python.exe D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\api.py 
+2025-03-09 23:34:02.281383: W tensorflow/core/common_runtime/graph_constructor.cc:834] Node 'cond' has 4 outputs but the _output_shapes attribute specifies shapes for 48 outputs. Output shapes may be inaccurate.
 Traceback (most recent call last):
-  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\api.py", line 6, in <module>
-    intent_obj = intent_model.IntentModelLoad()
-  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\intent_model.py", line 43, in __init__
-    raise FileNotFoundError(f"Label encoder file not found: {label_encoder_path}")
-FileNotFoundError: Label encoder file not found: D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\NCB_projectresources\NCB_label_encoderpkl
-Loading label encoder from:D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\NCB_projectresources\NCB_label_encoderpkl
+  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\api.py", line 10, in <module>
+    @app.get('/healthCheck')
+TypeError: get() missing 1 required positional argument: 'path'
 
 Process finished with exit code 1
