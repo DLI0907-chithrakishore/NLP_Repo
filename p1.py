@@ -1,29 +1,36 @@
 in.py
-(nlp_ncb) (base) ai_user@ip-10-20-24-20:~/Chithra/nlp_intent_ncb/NCB_project/API$ /home/ai_user/Chithra/nlp_intent_ncb/NCB_project/nlp_ncb/bin/python /home/ai_user/Chithra/nlp_intent_ncb/NCB_project/API/api.py
-2025-03-11 19:49:49.784917: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:477] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-E0000 00:00:1741722589.799552 3452763 cuda_dnn.cc:8310] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
-E0000 00:00:1741722589.803905 3452763 cuda_blas.cc:1418] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
-2025-03-11 19:49:49.819482: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-/home/ai_user/Chithra/nlp_intent_ncb/NCB_project/API
-/home/ai_user/Chithra/nlp_intent_ncb/NCB_project/API/resources gooooooooo
-/home/ai_user/Chithra/nlp_intent_ncb/NCB_project/nlp_ncb/lib/python3.12/site-packages/sklearn/base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.2.0 when using version 1.6.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
-https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
-  warnings.warn(
-/home/ai_user/Chithra/nlp_intent_ncb/NCB_project/nlp_ncb/lib/python3.12/site-packages/sklearn/base.py:380: InconsistentVersionWarning: Trying to unpickle estimator TfidfTransformer from version 1.2.0 when using version 1.6.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
-https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
-  warnings.warn(
-/home/ai_user/Chithra/nlp_intent_ncb/NCB_project/nlp_ncb/lib/python3.12/site-packages/sklearn/base.py:380: InconsistentVersionWarning: Trying to unpickle estimator TfidfVectorizer from version 1.2.0 when using version 1.6.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
-https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
-  warnings.warn(
-/home/ai_user/Chithra/nlp_intent_ncb/NCB_project/nlp_ncb/lib/python3.12/site-packages/sklearn/base.py:380: InconsistentVersionWarning: Trying to unpickle estimator SVC from version 1.2.0 when using version 1.6.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
-https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
-  warnings.warn(
-INFO:     Started server process [3452763]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-ERROR:    [Errno 98] error while attempting to bind on address ('0.0.0.0', 8082): address already in use
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-(nlp_ncb) (base) ai_user@ip-10-20-24-20:~/Chithra/nlp_intent_ncb/NCB_project/API$ 
+
+
+(nlp_ncb) (base) ai_user@ip-10-20-24-20:~/Chithra/nlp_intent_ncb/NCB_project/API$ docker build -t ncb2 .
+[+] Building 0.1s (1/1) FINISHED                                                                     docker:default
+ => [internal] load build definition from Dockerfile                                                           0.0s
+ => => transferring dockerfile: 2B                                                                             0.0s
+ERROR: failed to solve: failed to read dockerfile: open Dockerfile: no such file or directory
+(nlp_ncb) (base) ai_user@ip-10-20-24-20:~/Chithra/nlp_intent_ncb/NCB_project/API$ cd ..
+(nlp_ncb) (base) ai_user@ip-10-20-24-20:~/Chithra/nlp_intent_ncb/NCB_project$ docker build -t ncb2 .
+[+] Building 88.5s (16/16) FINISHED                                                                  docker:default
+ => [internal] load build definition from Dockerfile                                                           0.0s
+ => => transferring dockerfile: 1.01kB                                                                         0.0s
+ => [internal] load metadata for docker.io/library/python:3.9-slim-buster                                      1.4s
+ => [internal] load .dockerignore                                                                              0.0s
+ => => transferring context: 2B                                                                                0.0s
+ => [ 1/11] FROM docker.io/library/python:3.9-slim-buster@sha256:320a7a4250aba4249f458872adecf92eea88dc6abd2d  0.0s
+ => [internal] load build context                                                                              0.0s
+ => => transferring context: 15.35kB                                                                           0.0s
+ => CACHED [ 2/11] RUN apt-get update -y &&         apt-get install -y git build-essential libsm6 libxext6 li  0.0s
+ => [ 3/11] COPY /API /IntentFastapi                                                                           0.1s
+ => [ 4/11] WORKDIR /IntentFastapi                                                                             0.0s
+ => [ 5/11] RUN apt-get update && apt-get install -y awscli                                                   16.7s
+ => [ 6/11] RUN pip install --no-cache-dir -r requirements.txt &&   wget -P "/IntentFastapi/resources/" "htt  60.3s 
+ => [ 7/11] RUN wget -P "/IntentFastapi/resources/" "https://nonprod-aimodels.s3-ap-south-1.amazonaws.com/RNN  0.4s
+ => [ 8/11] RUN wget -P "/IntentFastapi/resources/" "https://nonprod-aimodels.s3-ap-south-1.amazonaws.com/RNN  0.5s
+ => [ 9/11] WORKDIR /IntentFastapi/resources                                                                   0.0s
+ => [10/11] RUN python3 -m nltk.downloader stopwords                                                           1.3s
+ => [11/11] RUN python3 -m nltk.downloader punkt                                                               1.7s
+ => exporting to image                                                                                         6.0s
+ => => exporting layers                                                                                        6.0s
+ => => writing image sha256:180f471253fce7a2564f8e0b62ff4102100e5e88d2d6ecca592dcc59b85500d6                   0.0s
+ => => naming to docker.io/library/ncb2                                                                        0.0s
+(nlp_ncb) (base) ai_user@ip-10-20-24-20:~/Chithra/nlp_intent_ncb/NCB_project$ docker run -p 9090:9090 ncb2
+ERROR:    Error loading ASGI app. Could not import module "api".
+(nlp_ncb) (base) ai_user@ip-10-20-24-20:~/Chithra/nlp_intent_ncb/NCB_project$ 
