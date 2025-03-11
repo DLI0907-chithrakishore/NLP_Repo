@@ -1,33 +1,126 @@
 in.py
 
 C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\python.exe D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\api.py 
-D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\resources
-Traceback (most recent call last):
-  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\api.py", line 6, in <module>
-    intent_obj = intent_model.IntentModelLoad()
-  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\intent_model.py", line 43, in __init__
-    self.model_ncb_le = joblib.load(pk_file)
-  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\joblib\numpy_pickle.py", line 648, in load
-    obj = _unpickle(fobj)
-  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\joblib\numpy_pickle.py", line 577, in _unpickle
-    obj = unpickler.load()
-  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\pickle.py", line 1212, in load
-    dispatch[key[0]](self)
-  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\joblib\numpy_pickle.py", line 415, in load_build
-    self.stack.append(array_wrapper.read(self))
-  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\joblib\numpy_pickle.py", line 252, in read
-    array = self.read_array(unpickler)
-  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\joblib\numpy_pickle.py", line 152, in read_array
-    array = pickle.load(unpickler.file_handle)
-ModuleNotFoundError: No module named 'numpy._core'
 
-uvicorn==0.22.0
-fastapi==0.98.0
-unicorn==2.0.1.post1
-typing==3.7.4.3
-numpy==1.23.5
-tensorflow==2.13.0
-scikit-learn==1.2.0
-nltk==3.8.1
-joblib==1.2.0
-pytz
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.0.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\api.py", line 4, in <module>
+    import intent_model
+  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\intent_model.py", line 1, in <module>
+    from tensorflow import keras
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\__init__.py", line 38, in <module>
+    from tensorflow.python.tools import module_util as _module_util
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\__init__.py", line 37, in <module>
+    from tensorflow.python.eager import context
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\eager\context.py", line 34, in <module>
+    from tensorflow.python.client import pywrap_tf_session
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\client\pywrap_tf_session.py", line 19, in <module>
+    from tensorflow.python.client._pywrap_tf_session import *
+AttributeError: _ARRAY_API not found
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.0.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\api.py", line 4, in <module>
+    import intent_model
+  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\intent_model.py", line 1, in <module>
+    from tensorflow import keras
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\__init__.py", line 38, in <module>
+    from tensorflow.python.tools import module_util as _module_util
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\__init__.py", line 37, in <module>
+    from tensorflow.python.eager import context
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\eager\context.py", line 36, in <module>
+    from tensorflow.python.eager import execute
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\eager\execute.py", line 21, in <module>
+    from tensorflow.python.framework import dtypes
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\framework\dtypes.py", line 30, in <module>
+    from tensorflow.python.lib.core import _pywrap_float8
+AttributeError: _ARRAY_API not found
+ImportError: numpy.core._multiarray_umath failed to import
+ImportError: numpy.core.umath failed to import
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.0.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\api.py", line 4, in <module>
+    import intent_model
+  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\intent_model.py", line 1, in <module>
+    from tensorflow import keras
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\__init__.py", line 38, in <module>
+    from tensorflow.python.tools import module_util as _module_util
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\__init__.py", line 37, in <module>
+    from tensorflow.python.eager import context
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\eager\context.py", line 36, in <module>
+    from tensorflow.python.eager import execute
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\eager\execute.py", line 21, in <module>
+    from tensorflow.python.framework import dtypes
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\framework\dtypes.py", line 30, in <module>
+    from tensorflow.python.lib.core import _pywrap_float8
+AttributeError: _ARRAY_API not found
+ImportError: numpy.core._multiarray_umath failed to import
+ImportError: numpy.core.umath failed to import
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.0.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\api.py", line 4, in <module>
+    import intent_model
+  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\intent_model.py", line 1, in <module>
+    from tensorflow import keras
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\__init__.py", line 38, in <module>
+    from tensorflow.python.tools import module_util as _module_util
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\__init__.py", line 37, in <module>
+    from tensorflow.python.eager import context
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\eager\context.py", line 36, in <module>
+    from tensorflow.python.eager import execute
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\eager\execute.py", line 21, in <module>
+    from tensorflow.python.framework import dtypes
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\framework\dtypes.py", line 35, in <module>
+    from tensorflow.tsl.python.lib.core import pywrap_bfloat16
+AttributeError: _ARRAY_API not found
+ImportError: numpy.core._multiarray_umath failed to import
+ImportError: numpy.core.umath failed to import
+Traceback (most recent call last):
+  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\api.py", line 4, in <module>
+    import intent_model
+  File "D:\Bitbucket\NCB\nlp_intent_ncb\NCB_project\API\intent_model.py", line 1, in <module>
+    from tensorflow import keras
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\__init__.py", line 38, in <module>
+    from tensorflow.python.tools import module_util as _module_util
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\__init__.py", line 37, in <module>
+    from tensorflow.python.eager import context
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\eager\context.py", line 36, in <module>
+    from tensorflow.python.eager import execute
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\eager\execute.py", line 21, in <module>
+    from tensorflow.python.framework import dtypes
+  File "C:\Users\chithra.kishore\AppData\Local\anaconda3\envs\rnn\lib\site-packages\tensorflow\python\framework\dtypes.py", line 38, in <module>
+    _np_bfloat16 = pywrap_bfloat16.bfloat16_type()
+TypeError: Unable to convert function return value to a Python type! The signature was
+	() -> handle
+
+Process finished with exit code 1
