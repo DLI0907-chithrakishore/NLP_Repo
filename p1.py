@@ -47,3 +47,16 @@ we avoid '
  # Get the index of the highest probability
         predicted_intent_index = np.argmax(predicted_probabilities)'
 in model testing
+
+def pred(self, model, le, text):
+    # Transform the text data using the TF-IDF vectorizer
+    transformed_text = self.vectorizer.transform([text])
+
+    # Predict the class using the SVM model
+    predicted_label = model.predict(transformed_text)
+
+    # Decode the predicted label to its original class name
+    predicted_intent = le.inverse_transform(predicted_label)
+
+    return predicted_intent[0]  # Return as a string instead of a list
+            
