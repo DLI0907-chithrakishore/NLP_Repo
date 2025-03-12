@@ -1,14 +1,49 @@
 in.py
 
 
-(nlp_ncb) (base) ai_user@ip-10-20-24-20:~/Chithra/nlp_intent_ncb/NCB_project$ docker run -it --rm --entrypoint /bin/bash ncb2
-root@9335094f145e:/IntentFastapi/resources# ls -l /IntentFastapi
-total 24
-drwxrwxr-x 2 root root 4096 Mar 11 19:59 __pycache__
--rw-rw-r-- 1 root root 1822 Mar 11 19:54 api.py
--rw-rw-r-- 1 root root 5241 Mar 11 19:42 intent_model.py
--rw-rw-r-- 1 root root  244 Mar 11 19:24 requirements.txt
-drwxrwxr-x 1 root root 4096 Mar 11 20:00 resources
-root@9335094f145e:/IntentFastapi/resources# ls -l /IntentFastapi/api.py
--rw-rw-r-- 1 root root 1822 Mar 11 19:54 /IntentFastapi/api.py
-root@9335094f145e:/IntentFastapi/resources# 
+    def pred(self, model, le, text):
+
+        # Transform the text data using the TF-IDF vectorizer
+        transformed_text = self.vectorizer.transform([text])
+        # transformed_text = self.vectorizer.transform([text]).toarray()
+
+        # Predict the probabilities using svc model
+        # predicted_probabilities = model.predict([text])
+        predicted_probabilities = model.predict(transformed_text)
+
+        # Get the index of the highest probability
+        predicted_intent_index = np.argmax(predicted_probabilities)
+
+        # Decode the predicted intent
+        predicted_intent = le.inverse_transform([predicted_intent_index])
+        # print("pred_num", predicted_intent_index)
+        # print("pred_text", predicted_intent)
+        return predicted_intent
+I have to modify this code as while model building and testing I used:
+
+# Load the preprocessing objects and model
+label_encoder = joblib.load('label_encoder_300_svm.pkl')
+tfidf = joblib.load('tfidf_vectorizer_300_svm.pkl')
+svm_model = joblib.load('svm_model_300.pkl')
+
+# Preprocess the test data
+X_test = df_test["cleaned_data"]
+X_test_tfidf = tfidf.transform(df_test['cleaned_data'])
+
+label_encoder = LabelEncoder()
+df_test["ncb_reason_encode"] = label_encoder.fit_transform(df_test["ncb_reason"])
+y_test = df_test['ncb_reason_encode']
+
+y_pred = svm_model.predict(X_test_tfidf)
+
+# Decode the labels back to original class names
+y_test_labels = label_encoder.inverse_transform(y_test)
+y_pred_labels = label_encoder.inverse_transform(y_pred)
+
+# 🔟 Evaluate Model
+print("\nClassification Report:\n", classification_report(y_test_labels, y_pred_labels))
+print("Model Accuracy:", accuracy_score(y_test_labels, y_pred_labels))
+we avoid '
+ # Get the index of the highest probability
+        predicted_intent_index = np.argmax(predicted_probabilities)'
+in model testing
